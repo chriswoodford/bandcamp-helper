@@ -2,12 +2,13 @@ class LineItemsController < ApplicationController
 
   require 'csv'
   
+  before_filter :logged_in_user
+  
   def new
   end
 
   def create
 
-    @items = []
     valid_columns = ['order date', 'item name', 'item price', 'quantity',
           'tax', 'shipping', 'assessed revenue share', 'currency', 'paypal fee', 
           'paypal transaction id']
@@ -21,11 +22,12 @@ class LineItemsController < ApplicationController
       values = Hash[valid_fields.zip(valid_row)]
       values[:purchase_date] = DateTime.strptime(values[:purchase_date], '%m/%d/%y %H:%M%p')
       
-      LineItem.create!(values)
+      current_user.line_items.create!(values)
       
       if row.field('collected revenue share').to_f > 0
-        BandcampPayment.create!({ 
+        current_user.bandcamp_payments.create!({ 
           payment_date: values[:purchase_date],
+          currency: values[:currency],
           amount_collected: row.field('collected revenue share').to_f
         })   
       end

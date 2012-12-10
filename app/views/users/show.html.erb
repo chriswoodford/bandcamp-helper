@@ -1,0 +1,25 @@
+<div class="row">
+  
+  <h1>Bandcamp Account: <%= @user %></h1>
+  
+  <div class="span10">
+    Total Gross Revenue: $<%= sprintf "%.2f", @gross_revenue %>
+  </div>
+
+  <div class="span10">
+    Total Net Revenue: $<%= sprintf "%.2f", @net_revenue %>
+  </div>
+  
+  <div class="span10">
+    Total Paypal Fees: $<%= sprintf "%.2f", @paypal_fees %>
+  </div>
+
+  <div class="span10">
+    Total Revenue Share Assessed: $<%= sprintf "%.2f", @revenue_share %>
+  </div>
+
+  <div class="span10">
+    Total Revenue Share Collected $<%= sprintf "%.2f", @revenue_share_collected %>
+  </div>
+  
+</div>

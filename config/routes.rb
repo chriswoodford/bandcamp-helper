@@ -5,11 +5,14 @@ BandcampHelper::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :line_items, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
 
   root to: 'static_pages#home'
 
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete
+
+  match '/signup',  to: 'users#new'
 
   match '/import', to: 'line_items#new'
   
