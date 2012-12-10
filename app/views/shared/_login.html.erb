@@ -1,0 +1,9 @@
+<%= form_tag(sessions_path, class: 'form-signin') do %>
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <%= text_field_tag :username, '', class: 'input-block-level', placeholder: 'Email Address' %>
+  <%= password_field_tag :password, '', class: 'input-block-level', placeholder: 'Password' %>
+  <%= label_tag 'remember-me', 
+                check_box_tag('remember-me', 1, false) + ' Remember me', 
+                class: 'checkbox' %>
+  <%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
+<% end %>
