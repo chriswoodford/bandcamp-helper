@@ -1,15 +1,18 @@
 BandcampHelper::Application.routes.draw do
 
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
+
   resources :sessions, only: [:new, :create, :destroy]
+  resources :line_items, only: [:new, :create]
 
   root to: 'static_pages#home'
 
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete
-  
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
 
+  match '/import', to: 'line_items#new'
+  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
