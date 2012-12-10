@@ -33,4 +33,17 @@ class LineItem < ActiveRecord::Base
   validates :shipping, presence: true
   validates :tax, presence: true
 
+  after_initialize :default_values
+
+  private
+  
+    def default_values
+      self.paypal_fee ||= 0.00
+      self.price ||= 0.00
+      self.quantity ||= 0
+      self.revenue_share ||= 0.00
+      self.shipping ||= 0.00
+      self.tax ||= 0.00
+    end
+    
 end

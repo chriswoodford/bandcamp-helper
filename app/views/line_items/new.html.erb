@@ -1,2 +1,24 @@
-<h1>LineItems#new</h1>
-<p>Find me in app/views/line_items/new.html.erb</p>
+<div class="row">
+
+  <div class="span12">
+
+    <h1>Import Bandcamp Sales</h1>
+  
+    <%= form_tag(line_items_path, { class: 'form-horizontal', method: 'post', multipart: true } ) do %>
+      <div class="control-group">
+        <%= label_tag 'filename', 'File', class: "control-label" %> 
+        <div class="controls">
+          <%= file_field_tag "filename" %>
+        </div>
+      </div>
+    
+      <div class="form-actions">
+        <%= submit_tag "Import", class: "btn btn-primary" %>
+        <a href="<%= root_path %>" class="btn">Cancel</a>
+      </div>
+    
+    <% end %>
+    
+  </div>
+  
+</div>
