@@ -11,4 +11,5 @@
 
 class BandcampPayment < ActiveRecord::Base
   attr_accessible :amount_collected, :payment_date
+  belongs_to :user
 end

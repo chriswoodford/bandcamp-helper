@@ -22,6 +22,8 @@ class LineItem < ActiveRecord::Base
   attr_accessible :currency, :name, :paypal_fee, :paypal_id, :price, 
                   :purchase_date, :quantity, :revenue_share, :shipping, :tax
                   
+  belongs_to :user
+                  
   validates :currency, presence: true
   validates :name, presence: true
   validates :paypal_fee, presence: true

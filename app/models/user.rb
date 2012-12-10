@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
   attr_accessible :email, :name, :password, :password_confirmation
+  
+  has_many :line_items, dependent: :destroy
+  has_many :bandcamp_payments, dependent: :destroy
+  
   has_secure_password
   
   validates :name, presence: true
