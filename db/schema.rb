@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210201110) do
+ActiveRecord::Schema.define(:version => 20121210203710) do
+
+  create_table "bandcamp_payments", :force => true do |t|
+    t.datetime "payment_date"
+    t.decimal  "amount_collected"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "line_items", :force => true do |t|
     t.datetime "purchase_date"

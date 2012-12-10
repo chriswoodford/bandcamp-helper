@@ -18,10 +18,17 @@ class LineItemsController < ApplicationController
       
       valid_row = row.fields(*valid_columns)
       
-      params = Hash[valid_fields.zip(valid_row)]
-      params[:purchase_date] = DateTime.strptime(params[:purchase_date], '%m/%d/%y %H:%M%p')
+      values = Hash[valid_fields.zip(valid_row)]
+      values[:purchase_date] = DateTime.strptime(values[:purchase_date], '%m/%d/%y %H:%M%p')
       
-      LineItem.create!(params) 
+      LineItem.create!(values)
+      
+      if row.field('collected revenue share').to_f > 0
+        BandcampPayment.create!({ 
+          payment_date: values[:purchase_date],
+          amount_collected: row.field('collected revenue share').to_f
+        })   
+      end
       
     end
     
