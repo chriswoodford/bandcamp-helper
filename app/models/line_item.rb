@@ -25,7 +25,6 @@ class LineItem < ActiveRecord::Base
   validates :currency, presence: true
   validates :name, presence: true
   validates :paypal_fee, presence: true
-  validates :paypal_id, presence: true
   validates :price, presence: true
   validates :purchase_date, presence: true
   validates :quantity, presence: true
@@ -34,6 +33,19 @@ class LineItem < ActiveRecord::Base
   validates :tax, presence: true
 
   after_initialize :default_values
+  before_save :cleanup_values
+
+  def sub_total
+    price * quantity
+  end
+
+  def total
+    sub_total + tax + shipping
+  end
+
+  def net_total
+    total - paypal_fee - revenue_share
+  end
 
   private
   
@@ -44,6 +56,10 @@ class LineItem < ActiveRecord::Base
       self.revenue_share ||= 0.00
       self.shipping ||= 0.00
       self.tax ||= 0.00
+    end
+    
+    def cleanup_values
+      self.paypal_id = '' if self.paypal_id.downcase == 'to bandcamp'
     end
     
 end

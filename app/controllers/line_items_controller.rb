@@ -21,8 +21,7 @@ class LineItemsController < ApplicationController
       params = Hash[valid_fields.zip(valid_row)]
       params[:purchase_date] = DateTime.strptime(params[:purchase_date], '%m/%d/%y %H:%M%p')
       
-      LineItem.create!(params)
-      #@items.push params 
+      LineItem.create!(params) 
       
     end
     
