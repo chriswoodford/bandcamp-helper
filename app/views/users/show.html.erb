@@ -11,15 +11,23 @@
   </div>
   
   <div class="span10">
-    Total Paypal Fees: $<%= sprintf "%.2f", @paypal_fees %>
-  </div>
-
-  <div class="span10">
     Total Revenue Share Assessed: $<%= sprintf "%.2f", @revenue_share %>
   </div>
 
   <div class="span10">
     Total Revenue Share Collected $<%= sprintf "%.2f", @revenue_share_collected %>
+  </div>
+
+  <div class="span10">
+    Total Paypal Fees: $<%= sprintf "%.2f", @paypal_fees[:actual] %>
+  </div>
+
+  <div class="span10">
+    Paypal Fee Estimations
+    <ul>
+      <li>Using Standard Fee: $<%= sprintf "%.2f", @paypal_fees[:standard] %></li>
+      <li>Using Micro Fee: $<%= sprintf "%.2f", @paypal_fees[:micro] %></li>
+    </ul>
   </div>
   
 </div>

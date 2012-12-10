@@ -55,7 +55,7 @@ class LineItem < ActiveRecord::Base
     def default_values
       self.paypal_fee ||= 0.00
       self.price ||= 0.00
-      self.quantity ||= 0
+      self.quantity ||= 1
       self.revenue_share ||= 0.00
       self.shipping ||= 0.00
       self.tax ||= 0.00
