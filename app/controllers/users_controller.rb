@@ -28,8 +28,8 @@ class UsersController < ApplicationController
     @revenue_share = 0.00
     @revenue_share_collected = 0.00
     
-    standard_paypal_fee = PaypalStandardFee.new
-    micro_paypal_fee = PaypalMicroFee.new
+    standard_paypal_fee = Paypal::StandardFee.new
+    micro_paypal_fee = Paypal::MicroFee.new
     
     @paypal_fees = {
       actual: 0.00,
